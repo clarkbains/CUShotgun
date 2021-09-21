@@ -1,6 +1,9 @@
 const router = require('express').Router();
 const nodemailer = require('nodemailer'); 
-const config = require("../../config")
+const config = require("../../configManager")
+
+
+const os = require('os')
 // gets all friend requests
 router.post('/send-message', async (req, res) => {
     let {fName, lName, email, subjectLine, subject} = req.body;
@@ -8,13 +11,16 @@ router.post('/send-message', async (req, res) => {
 
     let transporter = nodemailer.createTransport({
         service: 'hotmail',
-        auth: config.contact.auth,
+        auth: {
+            user: config.contact.auth.user,
+            pass: config.contact.auth.pass
+        },
         debug: false,
         logger: true
     });
 
     let mail = {
-        from: config.contact.from,
+        from: config.contact.from ,
         to: config.contact.to, 
         cc: email,
         subject: subjectLine,

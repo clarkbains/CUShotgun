@@ -1,0 +1,15 @@
+version: '2'
+
+services:
+  cost-split:
+    container_name: cushotgun
+    image: ghcr.io/clarkbains/cushotgun
+    build: ./app/
+    environment:
+      CONTACT_AUTH_USER: example@hotmail.com
+      CONTACT_AUTH_PASS: foobar
+      CONTACT_FROM: example@hotmail.com
+      CONTACT_TO: example@gmail.com
+    ports:
+      - "80:80"
+    restart: always
