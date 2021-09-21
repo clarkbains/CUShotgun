@@ -7,7 +7,6 @@ const PORT = 80;
 const server = http.createServer(app);
 const multer = require('multer');
 const upload = multer();
-
 const utils = require('./views/routes/utils');
 
 // Body Parser MW
